@@ -3,4 +3,14 @@ project(tictactoe)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(tictactoe main.cpp)
+add_executable(tictactoe main.cpp
+        Player.cpp
+        include/Player.h
+        BoardSpot.cpp
+        include/BoardSpot.h
+        Board.cpp
+        include/Board.h
+        include/GameEnums.h
+        Game.cpp
+        include/Game.h
+)
