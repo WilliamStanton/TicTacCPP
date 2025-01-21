@@ -2,8 +2,7 @@
 // Created by Billy on 1/15/2025.
 //
 
-#ifndef GAMEENUMS_H
-#define GAMEENUMS_H
+#pragma once
 
 // Game Enums
 namespace GameEnums {
@@ -13,5 +12,3 @@ namespace GameEnums {
         WON
     };
 }
-
-#endif //GAMEENUMS_H

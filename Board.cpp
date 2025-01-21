@@ -3,6 +3,9 @@
 //
 
 #include "include/Board.h"
+
+#include <iostream>
+
 #include "include/GameEnums.h"
 
 #include <sstream>
@@ -10,9 +13,9 @@
 
 // Initialize board spots
 Board::Board() : boardSpots {
-    {BoardSpot(1, '1'), BoardSpot(2, '2'), BoardSpot(3, '3')},
-    {BoardSpot(4, '4'), BoardSpot(5, '5'), BoardSpot(6, '6')},
-    {BoardSpot(7, '7'), BoardSpot(8, '8'), BoardSpot(9, '9')}
+    {BoardSpot(1), BoardSpot(2), BoardSpot(3)},
+    {BoardSpot(4), BoardSpot(5), BoardSpot(6)},
+    {BoardSpot(7), BoardSpot(8), BoardSpot(9)}
 } {}
 
 /**
@@ -20,7 +23,7 @@ Board::Board() : boardSpots {
  * @param id board spot id
  * @return board spot pointer
  */
-BoardSpot* Board::getBoardSpot(int id) {
+BoardSpot* Board::getBoardSpot(const int id) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (boardSpots[i][j].getId() == id)
@@ -37,6 +40,7 @@ BoardSpot* Board::getBoardSpot(int id) {
  */
 GameEnums::GameState Board::checkState() const {
     using GameEnums::GameState;
+
     // horizontal
     if (boardSpots[0][0].getPlayer().getSymbol() == boardSpots[0][1].getPlayer().getSymbol() && boardSpots[0][0].getPlayer().getSymbol() == boardSpots[0][2].getPlayer().getSymbol() ||
         boardSpots[1][0].getPlayer().getSymbol() == boardSpots[1][1].getPlayer().getSymbol() && boardSpots[1][0].getPlayer().getSymbol() == boardSpots[1][2].getPlayer().getSymbol() ||
@@ -46,14 +50,14 @@ GameEnums::GameState Board::checkState() const {
     }
 
     // vertical
-    else if (boardSpots[0][0].getPlayer().getSymbol() == boardSpots[1][0].getPlayer().getSymbol() && boardSpots[0][0].getPlayer().getSymbol() == boardSpots[0][2].getPlayer().getSymbol() ||
+    if (boardSpots[0][0].getPlayer().getSymbol() == boardSpots[1][0].getPlayer().getSymbol() && boardSpots[0][0].getPlayer().getSymbol() == boardSpots[0][2].getPlayer().getSymbol() ||
         boardSpots[1][0].getPlayer().getSymbol() == boardSpots[1][1].getPlayer().getSymbol() && boardSpots[1][0].getPlayer().getSymbol() == boardSpots[1][2].getPlayer().getSymbol() ||
         boardSpots[2][0].getPlayer().getSymbol() == boardSpots[2][1].getPlayer().getSymbol() && boardSpots[2][0].getPlayer().getSymbol() == boardSpots[2][2].getPlayer().getSymbol()) {
         return GameState::WON;
     }
 
     // diagonals
-    else if (boardSpots[0][0].getPlayer().getSymbol() == boardSpots[1][1].getPlayer().getSymbol() && boardSpots[0][0].getPlayer().getSymbol() == boardSpots[2][2].getPlayer().getSymbol() ||
+    if (boardSpots[0][0].getPlayer().getSymbol() == boardSpots[1][1].getPlayer().getSymbol() && boardSpots[0][0].getPlayer().getSymbol() == boardSpots[2][2].getPlayer().getSymbol() ||
         boardSpots[2][0].getPlayer().getSymbol() == boardSpots[1][1].getPlayer().getSymbol() && boardSpots[2][0].getPlayer().getSymbol() == boardSpots[0][2].getPlayer().getSymbol()) {
         return GameState::WON;
     }
@@ -61,7 +65,7 @@ GameEnums::GameState Board::checkState() const {
     // check for incomplete game
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (boardSpots[i][j].getPlayer().getName().length() == 0) {
+            if (boardSpots[i][j].getPlayer().getName().empty()) {
                 return GameState::INCOMPLETE;
             }
         }
@@ -73,7 +77,7 @@ GameEnums::GameState Board::checkState() const {
 
 
 // Prints entire board to stream
-std::string Board::toString() {
+std::string Board::toString() const {
     std::ostringstream strOut;
     for (int i{0}; i < 3; i++) {
         for (int j{0}; j < 3; j++) {

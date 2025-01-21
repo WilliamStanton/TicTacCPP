@@ -7,7 +7,7 @@
 #include <utility>
 
 // Constructor definition
-Player::Player(std::string name, bool init, char symbol) {
+Player::Player(std::string name, const bool init, const char symbol) {
     this->name = std::move(name);
     this->turn = init;
     this->symbol = symbol;

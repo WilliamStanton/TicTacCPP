@@ -23,12 +23,12 @@ public:
     Game(std::string playerOneName, std::string playerTwoName);
 
     // Setters
-    void move(const int spot);
+    void move(int spot);
 
     // Getters
     Player getNextPlayer();
     Player getP1() const;
     Player getP2() const;
-    std::string getBoardSpots();
+    std::string getBoardSpots() const;
     GameEnums::GameState getState() const;
 };

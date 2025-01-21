@@ -6,7 +6,7 @@
 
 #include <utility>
 
-BoardSpot::BoardSpot(int id, char symbol) : player(std::string(""), false, symbol) {
+BoardSpot::BoardSpot(const int id) : player(std::string(""), false, static_cast<char>(id)) {
     this->id = id;
 }
 

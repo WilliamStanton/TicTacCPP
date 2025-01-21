@@ -15,7 +15,7 @@ private:
 
 public:
     // Constructor
-    BoardSpot(int id, char symbol);
+    explicit BoardSpot(int id);
 
     // Getters
     int getId() const;

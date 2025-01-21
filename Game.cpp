@@ -63,7 +63,7 @@ Player Game::getP2() const {
  * Gets all board spots as a string
  * @return all board spots
  */
-std::string Game::getBoardSpots() {
+std::string Game::getBoardSpots() const {
     return board.toString();
 }
 

@@ -18,5 +18,5 @@ public:
     // Getters
     BoardSpot* getBoardSpot(int id);
     GameEnums::GameState checkState() const;
-    std::string toString();
+    std::string toString() const;
 };
